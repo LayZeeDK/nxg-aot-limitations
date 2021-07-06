@@ -299,6 +299,104 @@
           }
         }
       }
+    },
+    "aot-sandbox-func-as-variable-export": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/aot-sandbox-func-as-variable-export",
+      "sourceRoot": "projects/aot-sandbox-func-as-variable-export/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/aot-sandbox-func-as-variable-export",
+            "index": "projects/aot-sandbox-func-as-variable-export/src/index.html",
+            "main": "projects/aot-sandbox-func-as-variable-export/src/main.ts",
+            "polyfills": "projects/aot-sandbox-func-as-variable-export/src/polyfills.ts",
+            "tsConfig": "projects/aot-sandbox-func-as-variable-export/tsconfig.app.json",
+            "assets": [
+              "projects/aot-sandbox-func-as-variable-export/src/favicon.ico",
+              "projects/aot-sandbox-func-as-variable-export/src/assets"
+            ],
+            "styles": [
+              "projects/aot-sandbox-func-as-variable-export/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/aot-sandbox-func-as-variable-export/src/environments/environment.ts",
+                  "with": "projects/aot-sandbox-func-as-variable-export/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "aot-sandbox-func-as-variable-export:build:production"
+            },
+            "development": {
+              "browserTarget": "aot-sandbox-func-as-variable-export:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "aot-sandbox-func-as-variable-export:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aot-sandbox-func-as-variable-export/src/test.ts",
+            "polyfills": "projects/aot-sandbox-func-as-variable-export/src/polyfills.ts",
+            "tsConfig": "projects/aot-sandbox-func-as-variable-export/tsconfig.spec.json",
+            "karmaConfig": "projects/aot-sandbox-func-as-variable-export/karma.conf.js",
+            "assets": [
+              "projects/aot-sandbox-func-as-variable-export/src/favicon.ico",
+              "projects/aot-sandbox-func-as-variable-export/src/assets"
+            ],
+            "styles": [
+              "projects/aot-sandbox-func-as-variable-export/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-cli121-app"
