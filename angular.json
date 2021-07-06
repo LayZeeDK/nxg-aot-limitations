@@ -1769,6 +1769,104 @@
           }
         }
       }
+    },
+    "aot-error-expression-form-not-supported": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/aot-error-expression-form-not-supported",
+      "sourceRoot": "projects/aot-error-expression-form-not-supported/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/aot-error-expression-form-not-supported",
+            "index": "projects/aot-error-expression-form-not-supported/src/index.html",
+            "main": "projects/aot-error-expression-form-not-supported/src/main.ts",
+            "polyfills": "projects/aot-error-expression-form-not-supported/src/polyfills.ts",
+            "tsConfig": "projects/aot-error-expression-form-not-supported/tsconfig.app.json",
+            "assets": [
+              "projects/aot-error-expression-form-not-supported/src/favicon.ico",
+              "projects/aot-error-expression-form-not-supported/src/assets"
+            ],
+            "styles": [
+              "projects/aot-error-expression-form-not-supported/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/aot-error-expression-form-not-supported/src/environments/environment.ts",
+                  "with": "projects/aot-error-expression-form-not-supported/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "aot-error-expression-form-not-supported:build:production"
+            },
+            "development": {
+              "browserTarget": "aot-error-expression-form-not-supported:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "aot-error-expression-form-not-supported:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aot-error-expression-form-not-supported/src/test.ts",
+            "polyfills": "projects/aot-error-expression-form-not-supported/src/polyfills.ts",
+            "tsConfig": "projects/aot-error-expression-form-not-supported/tsconfig.spec.json",
+            "karmaConfig": "projects/aot-error-expression-form-not-supported/karma.conf.js",
+            "assets": [
+              "projects/aot-error-expression-form-not-supported/src/favicon.ico",
+              "projects/aot-error-expression-form-not-supported/src/assets"
+            ],
+            "styles": [
+              "projects/aot-error-expression-form-not-supported/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-cli121-app"
