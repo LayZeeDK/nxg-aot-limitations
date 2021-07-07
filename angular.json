@@ -1965,6 +1965,104 @@
           }
         }
       }
+    },
+    "aot-error-only-initialized-variables-and-constants": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/aot-error-only-initialized-variables-and-constants",
+      "sourceRoot": "projects/aot-error-only-initialized-variables-and-constants/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/aot-error-only-initialized-variables-and-constants",
+            "index": "projects/aot-error-only-initialized-variables-and-constants/src/index.html",
+            "main": "projects/aot-error-only-initialized-variables-and-constants/src/main.ts",
+            "polyfills": "projects/aot-error-only-initialized-variables-and-constants/src/polyfills.ts",
+            "tsConfig": "projects/aot-error-only-initialized-variables-and-constants/tsconfig.app.json",
+            "assets": [
+              "projects/aot-error-only-initialized-variables-and-constants/src/favicon.ico",
+              "projects/aot-error-only-initialized-variables-and-constants/src/assets"
+            ],
+            "styles": [
+              "projects/aot-error-only-initialized-variables-and-constants/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/aot-error-only-initialized-variables-and-constants/src/environments/environment.ts",
+                  "with": "projects/aot-error-only-initialized-variables-and-constants/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "aot-error-only-initialized-variables-and-constants:build:production"
+            },
+            "development": {
+              "browserTarget": "aot-error-only-initialized-variables-and-constants:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "aot-error-only-initialized-variables-and-constants:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aot-error-only-initialized-variables-and-constants/src/test.ts",
+            "polyfills": "projects/aot-error-only-initialized-variables-and-constants/src/polyfills.ts",
+            "tsConfig": "projects/aot-error-only-initialized-variables-and-constants/tsconfig.spec.json",
+            "karmaConfig": "projects/aot-error-only-initialized-variables-and-constants/karma.conf.js",
+            "assets": [
+              "projects/aot-error-only-initialized-variables-and-constants/src/favicon.ico",
+              "projects/aot-error-only-initialized-variables-and-constants/src/assets"
+            ],
+            "styles": [
+              "projects/aot-error-only-initialized-variables-and-constants/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-cli121-app"
