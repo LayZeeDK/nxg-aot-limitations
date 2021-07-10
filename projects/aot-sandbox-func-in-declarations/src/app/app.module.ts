@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppFakeComponent } from './app-fake.component';
 import { AppComponent } from './app.component';
 
-function someLoader(someVariable: boolean): Type<any>[] {
+function failingLoader(someVariable: boolean): Type<any>[] {
   if (someVariable) {
     return [AppFakeComponent];
   } else {
@@ -12,11 +12,15 @@ function someLoader(someVariable: boolean): Type<any>[] {
   }
 }
 
+function passingLoader(someVariable: boolean): Type<any>[] {
+  return someVariable ? [AppFakeComponent] : [AppComponent];
+}
+
 let fakeWorld = true;
 
 @NgModule({
-  bootstrap: someLoader(fakeWorld),
-  declarations: someLoader(fakeWorld),
+  bootstrap: failingLoader(fakeWorld),
+  declarations: passingLoader(fakeWorld),
   imports: [BrowserModule],
 })
 export class AppModule {}
