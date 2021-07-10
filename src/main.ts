@@ -3,10 +3,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { featureFlagsToken } from './app/feature-flags.token';
+import { MyService } from './app/my.service';
 import { environment } from './environments/environment';
 
 function loadFeatureFlags(): Promise<{ [feature: string]: boolean }> {
-  return fetch('api/features').then((response) => response.json());
+  return fetch('assets/features.json').then((response) => response.json());
 }
 
 if (environment.production) {
@@ -14,9 +15,24 @@ if (environment.production) {
 }
 
 loadFeatureFlags()
+  .then((featureFlags) => {
+    console.log('featureFlags', featureFlags);
+
+    return featureFlags;
+  })
   .then((featureFlags) =>
-    platformBrowserDynamic().bootstrapModule(AppModule, {
-      providers: [{ provide: featureFlagsToken, useValue: featureFlags }],
+    platformBrowserDynamic(
+      // PASSING
+      [
+        { provide: featureFlagsToken, useValue: featureFlags },
+        { provide: MyService },
+      ]
+    ).bootstrapModule(AppModule, {
+      // FAILING
+      providers: [
+        { provide: featureFlagsToken, useValue: featureFlags },
+        { provide: MyService },
+      ],
     })
   )
 
