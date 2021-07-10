@@ -15,25 +15,11 @@ if (environment.production) {
 }
 
 loadFeatureFlags()
-  .then((featureFlags) => {
-    console.log('featureFlags', featureFlags);
-
-    return featureFlags;
-  })
   .then((featureFlags) =>
-    platformBrowserDynamic(
-      // PASSING
-      [
-        { provide: featureFlagsToken, useValue: featureFlags },
-        { provide: MyService },
-      ]
-    ).bootstrapModule(AppModule, {
-      // FAILING
-      providers: [
-        { provide: featureFlagsToken, useValue: featureFlags },
-        { provide: MyService },
-      ],
-    })
+    platformBrowserDynamic([
+      { provide: featureFlagsToken, useValue: featureFlags },
+      { provide: MyService },
+    ]).bootstrapModule(AppModule)
   )
 
   .catch((err) => console.error(err));
