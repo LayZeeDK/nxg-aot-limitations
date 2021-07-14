@@ -9,7 +9,8 @@ import { textToken } from './text.token';
 // error TS2454: Variable 'someText' is used before being assigned.
 export let someText: string;
 
-someText = 'Greetings from Angular';
+// someText = 'Greetings from Angular';
+someText = localStorage.getItem('someText') ?? 'Greetings from Angular';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -20,4 +21,8 @@ someText = 'Greetings from Angular';
     { provide: textToken, useValue: someText },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    localStorage.setItem('someText', 'Greetings from LocalStorage');
+  }
+}
