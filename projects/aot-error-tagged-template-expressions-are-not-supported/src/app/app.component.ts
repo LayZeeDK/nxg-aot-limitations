@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-const expression = 'funky';
-const raw = String.raw`A tagged template ${expression} string`;
+const subject = 'World';
+const failingGreeting = String.raw`Hello, ${subject}!`;
+const workingGreeting = `Hello, ${subject}!`;
 
 @Component({
   selector: 'app-root',
-  template: '<div>' + raw + '</div>',
+  template: '<h1>' + failingGreeting + '</h1>',
 })
 export class AppComponent {}
