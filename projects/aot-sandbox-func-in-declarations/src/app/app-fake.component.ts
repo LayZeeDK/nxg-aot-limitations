@@ -1,9 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app",
-  template: `Hello fake world`
+  selector: 'app-root',
+  template: `Hello fake world`,
 })
-export class AppFakeComponent {
-  constructor() {}
-};
+export class AppFakeComponent {}
