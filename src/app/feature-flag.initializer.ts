@@ -10,7 +10,7 @@ function configureFeatureFlags(
   http: HttpClient
 ): () => Observable<void> {
   return () =>
-    http.get<{ [feature: string]: boolean }>('api/features').pipe(
+    http.get<{ [feature: string]: boolean }>('assets/features.json').pipe(
       tap((features) => featureFlagService.configureFeatures(features)),
       mapTo(undefined)
     );
